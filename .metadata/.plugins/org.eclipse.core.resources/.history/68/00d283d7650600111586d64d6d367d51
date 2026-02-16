@@ -1,0 +1,52 @@
+package com.lpu;
+
+import java.util.List;
+
+import jakarta.persistence.EntityManager;
+import jakarta.persistence.EntityManagerFactory;
+import jakarta.persistence.EntityTransaction;
+import jakarta.persistence.Persistence;
+import jakarta.persistence.Query;
+
+public class Driver {
+	public static void main(String[] args) {
+//		EntityManagerFactory emf=Persistence.createEntityManagerFactory("dev");
+//		EntityManager em = emf.createEntityManager();
+//		EntityTransaction et = em.getTransaction();
+//		
+//		Query query = em.createQuery("select s from Student s");
+////		List<Student> students = query.getResultList();
+//		
+//		Student student = (Student)query.getSingleResult(); //if you want single result
+//		System.out.println(student.getName());
+		
+//		for(Student s: students) {
+//			System.out.println(s.getStudentId());
+//			System.out.println(s.getName());
+//			System.out.println(s.getPhone());
+//			System.out.println("---------------");
+//		}
+//		System.out.println(emf);
+		
+		//One-To-One unidirectional 
+		EntityManagerFactory emf=Persistence.createEntityManagerFactory("dev");
+		EntityManager em = emf.createEntityManager();
+		EntityTransaction et = em.getTransaction();
+		
+		Aadhaar a = new Aadhaar();
+		
+		a.setId(101);
+		a.setLocation("China");
+		
+		Person p = new Person();
+		p.setId(102);
+		p.setName("Raju");
+		p.setAadhaar(a);
+		
+		et.begin();
+		em.persist(p);
+		em.persist(a);
+		et.commit();
+		
+	}
+}

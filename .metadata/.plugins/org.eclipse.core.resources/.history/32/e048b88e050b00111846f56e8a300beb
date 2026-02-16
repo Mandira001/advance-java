@@ -1,0 +1,20 @@
+package com.lp;
+
+import org.springframework.context.ApplicationContext;
+import org.springframework.context.support.ClassPathXmlApplicationContext;
+
+import com.lpu.Student;
+
+public class employeeDriver {
+	public static void main(String[] args) {
+		//BeanFactory b;
+		ApplicationContext context = new ClassPathXmlApplicationContext("config.xml");
+		//creating container
+		System.out.println("main start");
+        // Student student = new Student();
+		// Student student = (Student)context.getBean("myStudent");  //by downcasting
+	    Employee employee = (Employee)context.getBean("myEmployee", Employee.class); //automatic downcast
+		employee.work();
+		System.out.println("main end");
+	}
+}

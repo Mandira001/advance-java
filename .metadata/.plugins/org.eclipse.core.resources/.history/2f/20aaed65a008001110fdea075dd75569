@@ -1,0 +1,51 @@
+package com.lpu.One_To_Many;
+
+import jakarta.persistence.EntityManager;
+import jakarta.persistence.EntityManagerFactory;
+import jakarta.persistence.EntityTransaction;
+import jakarta.persistence.Persistence;
+
+public class BankAccountCrudImp implements BankAccountCrud1 {
+	EntityManagerFactory emf =  Persistence.createEntityManagerFactory("dev");
+	EntityManager em = emf.createEntityManager();
+	EntityTransaction et = em.getTransaction();
+	
+	@Override
+	public void saveBank(Bank bank) {
+		et.begin();
+		em.persist(bank);
+		et.commit();
+	}
+	
+	@Override
+	public void updateBank(int id) {
+		Bank bank = em.find(Bank.class, 101);
+		if(bank != null) {
+			et.begin();
+			bank.setLoc("Mumbai");
+			et.commit();
+		}else {
+			System.out.println("bank not found");
+		}
+	}
+	
+	@Override
+	public Bank findBankById(int id) {
+		
+	}
+	
+	@Override
+	public Bank findBankByName(String name) {
+		
+	}
+	
+	@Override
+	public void giveAccountToBank(int bankId, Account newAccount) {
+		
+	}
+	
+	@Override
+	public void giveAccountToBank(int bankId, List<Account> accounts) {
+		
+	}
+}

@@ -1,0 +1,13 @@
+package com.lpu;
+
+import jakarta.persistence.Entity;
+import jakarta.persistence.Id;
+@Entity
+public class Aadhaar {
+	@Id
+	private int id;
+	private String location;
+	
+	
+	
+}

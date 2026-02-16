@@ -1,0 +1,36 @@
+package com.lpu.OneToOne;
+
+import jakarta.persistence.Entity;
+import jakarta.persistence.FetchType;
+import jakarta.persistence.Id;
+import jakarta.persistence.OneToOne;
+
+@Entity
+public class Person {
+	@Id
+	private int id;
+	private String name;
+	@OneToOne(fetch = FetchType.LAZY)
+	private Aadhaar aadhaar;
+	
+	public Aadhaar getAadhaar() {
+		return aadhaar;
+	}
+	public void setAadhaar(Aadhaar aadhaar) {
+		this.aadhaar = aadhaar;
+	}
+	public int getId() {
+		return id;
+	}
+	public void setId(int id) {
+		this.id = id;
+	}
+	public String getName() {
+		return name;
+	}
+	public void setName(String name) {
+		this.name = name;
+	}
+	
+	
+}

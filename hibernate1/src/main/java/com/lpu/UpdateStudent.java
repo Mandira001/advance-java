@@ -1,0 +1,23 @@
+package com.lpu;
+
+import jakarta.persistence.EntityManager;
+import jakarta.persistence.EntityManagerFactory;
+import jakarta.persistence.EntityTransaction;
+import jakarta.persistence.Persistence;
+
+public class UpdateStudent {
+	public static void main(String[] args) {
+		EntityManagerFactory emf = Persistence.createEntityManagerFactory("dev");
+		EntityManager em = emf.createEntityManager();
+		EntityTransaction et = em.getTransaction();
+		
+		Student s = em.find(Student.class, 10);  //fetch student from db with id
+		
+		s.setPhone(9876895);  //Assign new value
+		et.begin();
+		em.merge(s);    //call update method
+		et.commit();
+		
+		System.out.println("updated");
+	}
+}

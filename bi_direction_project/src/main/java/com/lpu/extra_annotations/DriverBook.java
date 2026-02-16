@@ -1,0 +1,23 @@
+package com.lpu.extra_annotations;
+
+import jakarta.persistence.EntityManager;
+import jakarta.persistence.EntityManagerFactory;
+import jakarta.persistence.EntityTransaction;
+import jakarta.persistence.Persistence;
+
+public class DriverBook {
+	public static void main(String[] args) {
+		EntityManagerFactory emf = Persistence.createEntityManagerFactory("dev");
+		EntityManager em = emf.createEntityManager();
+		EntityTransaction et = em.getTransaction();
+		
+		Book book = new Book();
+		book.setName("java");
+		book.setAuthor("Ravi");
+		
+		et.begin();
+		em.persist(book);
+		et.commit();
+		
+	}
+}

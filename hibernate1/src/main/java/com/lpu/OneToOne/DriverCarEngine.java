@@ -1,0 +1,44 @@
+package com.lpu.OneToOne;
+
+import jakarta.persistence.EntityManager;
+import jakarta.persistence.EntityManagerFactory;
+import jakarta.persistence.EntityTransaction;
+import jakarta.persistence.Persistence;
+
+public class DriverCarEngine {
+	public static void main(String[] args) {
+	EntityManagerFactory emf=Persistence.createEntityManagerFactory("dev");
+	EntityManager em = emf.createEntityManager();
+	EntityTransaction et = em.getTransaction();
+	
+	Engine e1 = new Engine();
+	
+	e1.setId(101);
+	e1.setCc("1000cc");
+	
+	Engine e2 = new Engine();
+	
+	e2.setId(102);
+	e2.setCc("2000cc");
+	
+	Car c1 = new Car();
+	c1.setId(10);
+	c1.setName("Maruti800");
+	c1.setEngine(e1);
+	
+	Car c2 = new Car();
+	
+	c2.setId(20);
+	c2.setName("Alto800");
+	c2.setEngine(e2);
+	
+	et.begin();
+	em.persist(c1);
+	em.persist(c2);
+	em.persist(e1);
+	em.persist(e2);
+	et.commit();
+	
+}
+}
+

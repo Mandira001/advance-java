@@ -1,0 +1,14 @@
+package com.lpu.e_commerce;
+
+import jakarta.persistence.Entity;
+import jakarta.persistence.Id;
+
+@Entity
+public class Order {
+	@Id
+	private int Order_id;
+	private int name;
+	private Delivery_id;
+	private Customer_id;
+	
+}

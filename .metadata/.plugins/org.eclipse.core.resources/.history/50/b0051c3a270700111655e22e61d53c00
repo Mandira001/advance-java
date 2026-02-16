@@ -1,0 +1,30 @@
+package com.lpu;
+
+import com.lpu.OneToOne.Person;
+
+import jakarta.persistence.EntityManager;
+import jakarta.persistence.EntityManagerFactory;
+import jakarta.persistence.EntityTransaction;
+import jakarta.persistence.Persistence;
+
+public class UpdatePerson {
+	public static void main(String[] args) {
+		EntityManagerFactory emf = Persistence.createEntityManagerFactory("dev");
+		EntityManager em = emf.createEntityManager();
+		EntityTransaction et = em.getTransaction();
+		
+        Person p = em.find(Person.class, 101);  //fetch student from db with id
+		
+		p.setName("Lucky");  //Assign new value
+		
+		Aadhaar a = p.getAadhaar();  //fetching Adhaar from person
+		
+		a.setLocation("India");
+		et.begin();
+		em.merge(p);//call update method
+		em.merge(a);
+		et.commit();
+		
+		System.out.println("updated");
+	}
+}

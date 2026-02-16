@@ -1,0 +1,58 @@
+package com.lpu;
+
+//import java.util.List;
+public class Driver {
+	public static void main(String[] args) {
+//		EntityManagerFactory emf=Persistence.createEntityManagerFactory("dev");
+//		EntityManager em = emf.createEntityManager();
+//		EntityTransaction et = em.getTransaction();
+//		
+//		Query query = em.createQuery("select s from Student s");
+////		List<Student> students = query.getResultList();
+//		
+//		Student student = (Student)query.getSingleResult(); //if you want single result
+//		System.out.println(student.getName());
+		
+//		for(Student s: students) {
+//			System.out.println(s.getStudentId());
+//			System.out.println(s.getName());
+//			System.out.println(s.getPhone());
+//			System.out.println("---------------");
+//		}
+//		System.out.println(emf);
+		
+		//One-To-One unidirectional 
+//		EntityManagerFactory emf=Persistence.createEntityManagerFactory("dev");
+//		EntityManager em = emf.createEntityManager();
+//		EntityTransaction et = em.getTransaction();
+//		
+//		Aadhaar a1 = new Aadhaar();
+//		
+//		a1.setId(1001);
+//		a1.setLocation("Mumbai");
+//		
+//		Aadhaar a2 = new Aadhaar();
+//		
+//		a2.setId(1002);
+//		a2.setLocation("Jaipur");
+//		
+//		Person p1 = new Person();
+//		p1.setId(101);
+//		p1.setName("Ram");
+//		p1.setAadhaar(a1);
+//		
+//		Person p2 = new Person();
+//		
+//		p2.setId(102);
+//		p2.setName("sahil");
+//		p2.setAadhaar(a2);
+//		
+//		et.begin();
+//		em.merge(a1);
+//		em.merge(a2);
+//		em.merge(p1);
+//		em.merge(p2);
+//		et.commit();
+		
+	}
+}

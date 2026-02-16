@@ -1,0 +1,93 @@
+package com.lpu.One_To_Many;
+
+import java.util.List;
+
+import jakarta.persistence.EntityManager;
+import jakarta.persistence.EntityManagerFactory;
+import jakarta.persistence.EntityTransaction;
+import jakarta.persistence.Persistence;
+
+public class BankAccountCrudImp implements BankAccountCrud1 {
+	EntityManagerFactory emf =  Persistence.createEntityManagerFactory("dev");
+	EntityManager em = emf.createEntityManager();
+	EntityTransaction et = em.getTransaction();
+	
+	@Override
+	public void saveBank(Bank bank) {
+		et.begin();
+		em.persist(bank);
+		et.commit();
+	}
+	
+	@Override
+	public void updateBank(int id) {
+		Bank bank = em.find(Bank.class, id);
+		if(bank != null) {
+			et.begin();
+			bank.setLoc("Mumbai");
+			et.commit();
+		}else {
+			System.out.println("bank not found");
+		}
+	}
+	
+	@Override
+	public Bank findBankById(int id) {
+		Bank bank = em.find(Bank.class, id);
+	}
+	
+	@Override
+	public Bank findBankByName(String name) {
+		String jpql = "SELECT b FROM Bank b WHERE b.name = :name";
+
+	    List<Bank> list = em.createQuery(jpql, Bank.class)
+	                        .setParameter("name", name)
+	                        .getResultList();
+
+	    if(!list.isEmpty()) {
+	        return list.get(0);
+	    }
+
+	    return null;
+	}
+	
+	@Override
+	public void giveAccountToBank(int bankId, Account newAccount) {
+		 Bank bank = em.find(Bank.class, bankId);
+
+	        if (bank != null) {
+
+	            et.begin();
+
+	            // set relationship (VERY IMPORTANT)
+	            newAccount.setBank(bank);
+
+	            em.persist(newAccount);
+
+	            et.commit();
+
+	        } else {
+	            System.out.println("Bank not found");
+	        }
+	}
+	
+	@Override
+	public void giveAccountToBank(int bankId, List<Account> accounts) {
+		Bank bank = em.find(Bank.class, bankId);
+
+        if (bank != null) {
+
+            et.begin();
+
+            for (Account acc : accounts) {
+                acc.setBank(bank); // set foreign key
+                em.persist(acc);
+            }
+
+            et.commit();
+
+        } else {
+            System.out.println("Bank not found");
+        }
+	}
+}

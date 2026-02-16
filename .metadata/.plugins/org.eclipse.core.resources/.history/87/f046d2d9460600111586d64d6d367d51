@@ -1,0 +1,29 @@
+package com.lpu;
+
+import jakarta.persistence.EntityManager;
+import jakarta.persistence.EntityManagerFactory;
+import jakarta.persistence.EntityTransaction;
+import jakarta.persistence.Persistence;
+
+public class SaveStudent {
+	public static void main(String[] args) {
+		EntityManagerFactory emf = Persistence.createEntityManagerFactory("dev");
+		EntityManager em = emf.createEntityManager();//CRUD methods
+		EntityTransaction et = em.getTransaction();//Handling Transaction
+		
+		Student s1 = new Student();
+		s1.setStudentId(10);
+		s1.setName("a");
+		s1.setPhone(888);
+		
+		Student s2 = new Student();
+		s2.setStudentId(12);
+		s2.setName("b");
+		s2.setPhone(9666);
+		
+		et.begin();
+		em.persist(s1); //method call
+		em.persist(s2);
+		et.commit();
+	}
+}

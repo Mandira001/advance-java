@@ -1,0 +1,46 @@
+package com.lpu.ManyToMany;
+
+import java.util.Arrays;
+
+import jakarta.persistence.EntityManager;
+import jakarta.persistence.EntityManagerFactory;
+import jakarta.persistence.EntityTransaction;
+import jakarta.persistence.Persistence;
+
+public class DriverCollegeStudentSubjects {
+	public static void main(String[] args) {
+		EntityManagerFactory emf = Persistence.createEntityManagerFactory("dev");
+		EntityManager em = emf.createEntityManager();
+		EntityTransaction et = em.getTransaction();
+		CollegeStudent s1 = new CollegeStudent();
+		s1.setId(20);
+		s1.setName("Ravi");
+		
+		CollegeStudent s2 = new CollegeStudent();
+		s2.setId(21);
+		s2.setName("Prachi");
+		
+		Subjects sub1 = new Subjects();
+		sub1.setId(201);
+		sub1.setName("Java");
+		
+		Subjects sub2 = new Subjects();
+		sub2.setId(202);
+		sub2.setName("SQL");
+		
+		s1.setSubjects(Arrays.asList(sub1, sub2));//give subjects to student1
+		s2.setSubjects(Arrays.asList(sub1, sub2));//give subjects to student2
+		
+		sub1.setStudents(Arrays.asList(s1, s2));//give students to subject 1
+		sub2.setStudents(Arrays.asList(s1, s2));//give students to subject 2
+		
+		et.begin();
+		em.persist(s1);
+		em.persist(s2);
+		//no need coz we have used cascade type inside student
+//		em.persist(sub1);
+//		em.persist(sub2);
+		et.commit();
+		
+	}
+}

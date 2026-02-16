@@ -1,0 +1,32 @@
+package com.lpu.ManyToMany;
+
+import java.util.List;
+
+import jakarta.persistence.EntityManager;
+import jakarta.persistence.EntityManagerFactory;
+import jakarta.persistence.EntityTransaction;
+import jakarta.persistence.Persistence;
+
+public class DriverStudentSubject {
+	public static void main(String[] args) {
+		EntityManagerFactory emf = Persistence.createEntityManagerFactory("dev");
+		EntityManager em = emf.createEntityManager();
+		EntityTransaction et = em.getTransaction();
+		
+		Subject s1 = new Subject(101, "java", "Ravi");
+		Subject s2 = new Subject(102, "SQL", "Vaishnav");
+		
+		List<Subject> subjects = Arrays.asList(s1, s2);
+		
+		Student stu1 = new Student(10, "Vamsi", 709, subjects);
+		Student stu2 = new Student(11, "Ram", 112, subjects);
+		
+		et.begin();
+		em.persist(s1);
+		em.persist(s2);
+		em.persist(stu1);
+		em.persist(stu2);
+		et.commit();
+		
+	}
+}

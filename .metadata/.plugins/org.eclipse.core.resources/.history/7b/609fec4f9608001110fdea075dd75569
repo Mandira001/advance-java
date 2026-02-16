@@ -1,0 +1,27 @@
+package com.lpu;
+
+import jakarta.persistence.EntityManager;
+import jakarta.persistence.EntityManagerFactory;
+import jakarta.persistence.EntityTransaction;
+import jakarta.persistence.Persistence;
+
+public class UpdatePersonAdhar {
+	public static void main(String[] args) {
+		EntityManagerFactory emf = Persistence.createEntityManagerFactory("dev");
+		EntityManager em = emf.createEntityManager();
+//		EntityTransaction et = em.getTransaction();
+		
+		Person p = em.find(Person.class, 10);
+		Adhar a = p.getAdhar(); //generate toString method to print and remove person, adhar coz if not remove overflow 
+        //will happen since person try to fetch adhar and then adhar will try to fetch person and will continue like this
+		System.out.println(p);
+		System.out.println(a);
+		
+		Adhar adhar = em.find(Adhar.class, 20);
+		Person person = a.getPerson();
+		System.out.println(person);
+		System.out.println(adhar);
+		
+	}
+
+}

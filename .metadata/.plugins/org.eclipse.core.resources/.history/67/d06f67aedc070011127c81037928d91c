@@ -1,0 +1,5 @@
+package com.lpu.ManyToMany;
+
+public class UpdateStudentSubject {
+
+}

@@ -1,0 +1,39 @@
+package com.lpu;
+
+import jakarta.persistence.Entity;
+import jakarta.persistence.Id;
+import jakarta.persistence.OneToOne;
+
+@Entity
+public class Adhar {
+	@Id
+	private int id;
+	private String loc;
+	@OneToOne(mappedBy = "adhar")//it will take person info from adhar(adhar_id) reference
+	private Person person;
+	//getter setter
+	//no-argument constructor
+	public int getId() {
+		return id;
+	}
+	public void setId(int id) {
+		this.id = id;
+	}
+	public String getLoc() {
+		return loc;
+	}
+	public void setLoc(String loc) {
+		this.loc = loc;
+	}
+	public Person getPerson() {
+		return person;
+	}
+	public void setPerson(Person person) {
+		this.person = person;
+	}
+	@Override
+	public String toString() {
+		return "Adhar [id=" + id + ", loc=" + loc + "]";
+	}
+	
+}

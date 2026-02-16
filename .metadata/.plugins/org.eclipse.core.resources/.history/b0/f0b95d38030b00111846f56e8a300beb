@@ -1,0 +1,17 @@
+package com.lpu;
+
+import org.springframework.context.ApplicationContext;
+import org.springframework.context.support.ClassPathXmlApplicationContext;
+
+public class Driver {
+	public static void main(String[] args) {
+		//BeanFactory b;
+		ApplicationContext context = new ClassPathXmlApplicationContext("");
+		System.out.println("main start");
+//		Student student = new Student();
+		// Student student = (Student)context.getBean("myStudent");  //by downcasting
+	    Student student = (Student)context.getBean("myStudent", Student.class); //automatic downcast
+		student.study();
+		System.out.println("main end");
+	}
+}

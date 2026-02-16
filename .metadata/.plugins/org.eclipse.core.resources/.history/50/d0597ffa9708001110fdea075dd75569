@@ -1,0 +1,42 @@
+package com.lpu.One_To_Many;
+
+import java.util.Arrays;
+
+import jakarta.persistence.EntityManager;
+import jakarta.persistence.EntityManagerFactory;
+import jakarta.persistence.EntityTransaction;
+import jakarta.persistence.Persistence;
+
+public class BankAccountDriver {
+	public static void main(String[] args) {
+		EntityManagerFactory emf = Persistence.createEntityManagerFactory("dev");
+		EntityManager em = emf.createEntityManager();
+		EntityTransaction et = em.getTransaction();
+		
+		Bank b = new Bank();
+		b.setId(101);
+		b.setName("SBI");
+		b.setLoc("HYD");
+		
+		Account a1 = new Account();
+		a1.setId(10);
+		a1.setName("Raju");
+//		a1.setBalance(1500);
+		
+		Account a2 = new Account();
+		a2.setId(11);
+		a2.setName("Ravi");
+//		a2.setBalance(2100);
+		
+		b.setAccounts(Arrays.asList(a1, a2));//give account to bank
+		
+		a1.setBank(b);//give bank(SBI) to account
+		a2.setBank(b);//give bank(SBI) to account
+		
+		et.begin();
+		em.persist(a1);
+		em.persist(a2);
+		em.persist(b);
+		et.commit();
+	}
+}
