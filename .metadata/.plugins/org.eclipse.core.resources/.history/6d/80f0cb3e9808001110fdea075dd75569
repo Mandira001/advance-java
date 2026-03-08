@@ -1,7 +1,0 @@
-package com.lpu.One_To_Many;
-
-public class BankAccountCrud {
-	public static void main(String[] args) {
-		
-	}
-}

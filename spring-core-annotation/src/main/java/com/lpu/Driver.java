@@ -3,6 +3,8 @@ package com.lpu;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 
+import com.lpu.entity.BeanLifeCycle;
+
 public class Driver {
 	public static void main(String[] args) {
 		ApplicationContext context = new AnnotationConfigApplicationContext(MyConfig.class);
@@ -10,5 +12,6 @@ public class Driver {
 		Employee e = context.getBean("emp", Employee.class);
 		e.work();
 		s.study();
+		
 	}
 }
