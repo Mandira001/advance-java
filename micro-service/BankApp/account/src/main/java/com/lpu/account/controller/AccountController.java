@@ -1,0 +1,16 @@
+package com.lpu.account.controller;
+
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
+
+@RestController
+@RequestMapping("/account")
+public class AccountController {
+	
+	@GetMapping("/ainfo")
+	public String accountInfo() {
+		return "Account Service Running";
+	}
+	
+}
